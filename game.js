@@ -93,6 +93,7 @@ Bird.prototype.update = function(){
 
 
 //if a bird touches ground or touches pipe
+//death
 Bird.prototype.isDead = function(height, pipes){
 	//hit ground
 	if(this.y >= height || this.y + this.height <= 0){
@@ -109,4 +110,33 @@ Bird.prototype.isDead = function(height, pipes){
 			return true;
 	}
 }
+}
+
+
+//make the pipes
+var Pipe = function(json){
+	this.x = 0;
+	this.y = 0;
+	this.width = 50;
+	this.height = 40;
+	this.speed = 3;
+
+	this.init(json);
+}
+
+
+Pipe.prototype.init = function(json){
+	for(var i in json){
+		this[i] = json[i];
+	}
+}
+
+Pipe.prototype.update = function(){
+	this.x -= this.speed;
+}
+
+Pipe.prototype.isOut = function(){
+	if(this.x + this.width < 0){
+		return true;
+	}
 }
