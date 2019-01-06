@@ -145,18 +145,32 @@ Pipe.prototype.isOut = function(){
 //main game
 
 var Game = function(){
+	//List of objects
 	this.pipes = [];
 	this.birds = [];
+
 	this.score = 0;
+
+	//draw on canvas file
+	//this is a png named flappy.png
 	this.canvas = document.querySelector("#flappy");
+
+
+
 	this.ctx = this.canvas.getContext("2d");
+
+	//subject to change 
 	this.width = this.canvas.width;
 	this.height = this.canvas.height;
+
+	//how fast each generation spawns
 	this.spawnInterval = 90;
 	this.interval = 0;
 	this.gen = [];
 	this.alives = 0;
 	this.generation = 0;
+
+	
 	this.backgroundSpeed = 0.5;
 	this.backgroundx = 0;
 	this.maxScore = 0;
