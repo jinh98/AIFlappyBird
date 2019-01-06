@@ -135,8 +135,29 @@ Pipe.prototype.update = function(){
 	this.x -= this.speed;
 }
 
+//out of sight
 Pipe.prototype.isOut = function(){
 	if(this.x + this.width < 0){
 		return true;
 	}
+}
+
+//main game
+
+var Game = function(){
+	this.pipes = [];
+	this.birds = [];
+	this.score = 0;
+	this.canvas = document.querySelector("#flappy");
+	this.ctx = this.canvas.getContext("2d");
+	this.width = this.canvas.width;
+	this.height = this.canvas.height;
+	this.spawnInterval = 90;
+	this.interval = 0;
+	this.gen = [];
+	this.alives = 0;
+	this.generation = 0;
+	this.backgroundSpeed = 0.5;
+	this.backgroundx = 0;
+	this.maxScore = 0;
 }
