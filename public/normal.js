@@ -164,7 +164,6 @@ var Game = function(){
 	this.canvas = document.querySelector("#flappy");
 
 
-
 	this.ctx = this.canvas.getContext("2d");
 
 	//subject to change 
