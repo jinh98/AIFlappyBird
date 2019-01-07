@@ -28,10 +28,11 @@
 
 
 
-var Neuvol;
+// var Neuvol;
 
 
 var game;
+var player;
 //normal speed
 var FPS = 60;
 var maxScore=0;
@@ -42,6 +43,11 @@ var images = {};
 var speed = function(fps){
 	FPS = parseInt(fps);
 }
+
+var flappp = function(){
+	this.player.flap();
+}
+
 
 //use images
 var loadImages = function(sources, callback){
@@ -145,11 +151,11 @@ Pipe.prototype.isOut = function(){
 }
 
 //main game
-
 var Game = function(){
 	//List of objects
 	this.pipes = [];
-	this.birds = [];
+	this.player = new Bird();
+	// this.birds = [];
 
 	this.score = 0;
 
@@ -176,6 +182,7 @@ var Game = function(){
 	this.backgroundSpeed = 0.5;
 	this.backgroundx = 0;
 	this.maxScore = 0;
+
 }
 
 //on start
@@ -183,63 +190,49 @@ Game.prototype.start = function(){
 	this.interval = 0;
 	this.score = 0;
 	this.pipes = [];
-	this.birds = [];
+	this.player = new Bird();
+	this.player.flap();
 
-	this.gen = Neuvol.nextGeneration();
-	for(var i in this.gen){
-		var b = new Bird();
-		this.birds.push(b)
-	}
-	this.generation++;
-	this.alives = this.birds.length;
+	// this.birds = [];
+	// this.gen = Neuvol.nextGeneration();
+	// for(var i in this.gen){
+	
+	// 	this.birds.push(b)
+	// }
+	// this.generation++;
+	// this.alives = this.birds.length;
 }
 
 
 //main game loop
 //updates game
 
+
+document.getElementById("stop").addEventListener("click", function(){ alert("Paused"); });
+big = this;
+document.getElementById("flappy").addEventListener("click", function(){ 
+	big.onClicking=true; 
+	if (big.onClicking==true){
+		//alert("Hello World!");
+	}
+
+});
+	
 Game.prototype.update = function(){
+	
 	//scroll background
 	this.backgroundx += this.backgroundSpeed;
 
 	var nextHole = 0;
+	//update player
+	//if player clicked
 
-	//birds.length is the number of birds alive
-	if(this.birds.length > 0){
+	
+	this.player.update();
+	if (this.player.isDead(this.height, this.pipes)){
+		//end
 
-		for(var i = 0; i < this.pipes.length; i+=2){//loop through the pipes
-
-			if(this.pipes[i].x + this.pipes[i].width > this.birds[0].x){
-				nextHole = this.pipes[i].height/this.height;
-				break;
-			}
-		}
-	}
-
-
-	//loop through all the birds
-	for(var i in this.birds){
-		if(this.birds[i].alive){
-
-			var inputs = [this.birds[i].y / this.height,nextHole];
-
-			var res = this.gen[i].compute(inputs);
-			if(res > 0.5){
-				this.birds[i].flap();
-			}
-
-			this.birds[i].update();
-
-			if(this.birds[i].isDead(this.height, this.pipes)){
-				this.birds[i].alive = false;
-				this.alives--;
-				//console.log(this.alives);
-				Neuvol.networkScore(this.gen[i], this.score);
-				if(this.isItEnd()){
-					this.start();
-				}
-			}
-		}
+		this.start();
 	}
 
 	for(var i = 0; i < this.pipes.length; i++){
@@ -274,21 +267,24 @@ Game.prototype.update = function(){
 	}else{
 		setTimeout(function(){
 			self.update();
+
+			if (big.onClicking==true){
+				self.player.flap();
+				//alert("Hello World!");
+			}
+			big.onClicking=false;
 		}, 1000/FPS);
-	}
+	
+}
+
 }
 
 //ending
 Game.prototype.isItEnd = function(){
-	//loop through all birds
-	//ends if population = 0
-	for(var i in this.birds){
-		if(this.birds[i].alive){
-			return false;
-		}
-	}
+
 	return true;
 }
+
 
 //display
 Game.prototype.display = function(){
@@ -307,28 +303,28 @@ Game.prototype.display = function(){
 
 	this.ctx.fillStyle = "#FFC600";
 	this.ctx.strokeStyle = "#CE9E00";
-	for(var i in this.birds){
-		if(this.birds[i].alive){
-			this.ctx.save(); 
-			this.ctx.translate(this.birds[i].x + this.birds[i].width/2, this.birds[i].y + this.birds[i].height/2);
-			this.ctx.rotate(Math.PI/2 * this.birds[i].gravity/20);
-			this.ctx.drawImage(images.bird, -this.birds[i].width/2, -this.birds[i].height/2, this.birds[i].width, this.birds[i].height);
-			this.ctx.restore();
-		}
-	}
+	
+	this.ctx.save(); 
+	this.ctx.translate(this.player.x + this.player.width/2, this.player.y + this.player.height/2);
+	this.ctx.rotate(Math.PI/2 * this.player.gravity/20);
+	this.ctx.drawImage(images.bird, -this.player.width/2, -this.player.height/2, this.player.width, this.player.height);
+	this.ctx.restore();
 
 	this.ctx.fillStyle = "black";
 	this.ctx.font="20px Oswald, sans-serif";
 	this.ctx.fillText("Score : "+ this.score, 10, 25);
 	this.ctx.fillText("Max Score : "+this.maxScore, 10, 50);
-	this.ctx.fillText("Gen : "+this.generation, 10, 75);
-	this.ctx.fillText("Birds Alive : "+this.alives+" / "+Neuvol.options.population, 10, 100);
+	// this.ctx.fillText("Gen : "+this.generation, 10, 75);
+	// this.ctx.fillText("Birds Alive : "+this.alives+" / "+Neuvol.options.population, 10, 100);
 
 	var self = this;
 	requestAnimationFrame(function(){
 		self.display();
 	});
 }
+
+
+
 
 window.onload = function(){
 	var sprites = {
@@ -345,8 +341,12 @@ window.onload = function(){
 		});
 		game = new Game();
 		game.start();
-		game.update();
-		game.display();
+        
+		var x = 0;
+
+			game.update();
+			game.display();
+		
 	}
 
 
