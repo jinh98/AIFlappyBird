@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Normal Flappy</title>
+	<title>AI Flappy Bird</title>
 	
 </head>
 <body>
-	
 	<center>
 		<canvas id="flappy" width="500" height="512"></canvas> <br/>
-		<p id="text">Game speed</p>
+		<p>Simulation speed</p>
 		<button onclick="speed(60)">normal</button> 
 		<button onclick="speed(120)">x2</button> 
 		<button onclick="speed(300)">x5</button> 
 		<button onclick="speed(0)">MAX</button> 
-		<button onclick="alert("Stoped")" id = "stop">Stop</button> 
 		
+		<button onclick="alert("Stoped")" id = "stop">Stop</button> 
 		<br/>
 		
-			<script src = "Neuroevolution.js"></script>
-			<script src = "normal.js"></script>
-	
+
+		<script src = "Neuroevolution.js"></script>
+		<script src = "game.js"></script>
 	</center>
+	
 
 </body>
 </html>

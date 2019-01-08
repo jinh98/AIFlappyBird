@@ -144,6 +144,7 @@ Pipe.prototype.isOut = function(){
 	}
 }
 
+document.getElementById("stop").addEventListener("click", function(){ alert("Paused"); });
 //main game
 
 var Game = function(){

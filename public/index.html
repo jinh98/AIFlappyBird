@@ -1,26 +1,87 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+
 <html>
-<head>
-	<title>AI Flappy Bird</title>
-	
-</head>
-<body>
+	<head>
+		<title>Left Sidebar - Landed by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
 
-	<canvas id="flappy" width="500" height="512"></canvas> <br/>
-	<p>Simulation speed</p>
-	<button onclick="speed(60)">normal</button> 
-	<button onclick="speed(120)">x2</button> 
-	<button onclick="speed(300)">x5</button> 
-	<button onclick="speed(0)">MAX</button> 
-	
-	<button onclick="alert("Stoped")" id = "stop">Stop</button> 
-	<br/>
-	
+			<!-- Header -->
+				<header id="header">
+					<h1 id="logo"><a href="index.html">AIFlappyBird</a></h1>
+					<nav id="nav">
+						
+					</nav>
+				</header>
 
-	<script src = "Neuroevolution.js"></script>
-	<script src = "game.js"></script>
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<h2>Can You Beat the AI?</h2>
+							<p>The following is a clone to the famous flappy bird game which plays purely by machine learning. </p>
+						</header>
+						<div class="row gtr-150">
+							<div class="col-4 col-12-medium">
 
-	
+								<!-- Sidebar -->
+									<section id="sidebar">
+										<section>
+											<h3>How it works</h3>
+											<p>The following AI implements the genetic algorithm which simulates biology ---- take the best bird that got the most score and make the next generation with the "genes" of this best bird. Eventually the bird will out smart the game and get to, well, infinity.
 
-</body>
+											Try out the buttons and see it for your self.
+
+											<center>
+												<canvas id="flappy" width="500" height="512"></canvas> <br/>
+												<h2>Simulation speed</h2>
+												<button onclick="speed(60)" class="button">normal</button> 
+												<button onclick="speed(120)" class="button">x2</button> 
+												<button onclick="speed(300)" class="button">x5</button> 
+												<button onclick="speed(0)" class="button">MAX</button> 
+												
+												<button onclick="alert("Stoped")" id = "stop" class="button">Stop</button> 
+												<br/>
+												
+
+												<script src = "Neuroevolution.js"></script>
+												<script src = "game.js"></script>
+											</center>
+
+
+											</p>
+											<footer>
+												
+											</footer>
+										</section>
+										<hr />
+										
+									</section>
+
+							</div>
+							
+						</div>
+					</div>
+				</div>
+
+
+		</div>
+
+		<!-- Scripts -->
+
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>
