@@ -161,7 +161,7 @@ var Game = function(){
 
 	//draw on canvas file
 	//this is a png named flappy.png
-	this.canvas = document.querySelector("#flappy");
+	this.canvas = document.querySelector("#flappyNormal");
 
 
 	this.ctx = this.canvas.getContext("2d");
@@ -209,7 +209,7 @@ Game.prototype.start = function(){
 
 document.getElementById("stop").addEventListener("click", function(){ alert("Paused"); });
 big = this;
-document.getElementById("flappy").addEventListener("click", function(){ 
+document.getElementById("flappyNormal").addEventListener("click", function(){ 
 	big.onClicking=true; 
 	if (big.onClicking==true){
 		//alert("Hello World!");

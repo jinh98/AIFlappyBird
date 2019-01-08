@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>ML Flappy Bird</title>
+		<title>Normals Flappy Bird</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -13,7 +13,7 @@
 
 			<!-- Header -->
 				<header id="header">
-					<h1 id="logo"><a href="index.html">AIFlappyBird</a></h1>
+					<h1 id="logo"><a href="index.html">Clone of Flappy Bird</a></h1>
 					<nav id="nav">
 						
 					</nav>
@@ -23,8 +23,9 @@
 				<div id="main" class="wrapper style1">
 					<div class="container">
 						<header class="major">
-							<h2>Can You Beat the AI?</h2>
-							<p>The following is a clone to the famous <a href="normal2.html">flappy bird</a> game which plays purely by machine learning. </p>
+							<h2>Try the original version!</h2>
+							<p>Click to play! You are not as good as the <a href="index.html">AI</a>, right? :)</p>
+							
 						</header>
 						<div class="row gtr-150">
 							<center>
@@ -34,14 +35,12 @@
 
 										<section id="sidebar">
 											<section>
-												<h3>How it works</h3>
-												<p>The following AI implements the genetic algorithm which simulates genes in biology ---- take the best bird that got the most score and make the next generation with the "genes" of this best bird. Eventually the bird will out smart the game and get to, well, infinity.
-
-												Try out the buttons and see it for your self.
+												<h3>Click and Play</h3>
+												<p>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 												<center>
-													<canvas id="flappy" width="500" height="512"></canvas> <br/>
-													<h2>Simulation speed</h2>
+													<canvas id="flappyNormal" width="500" height="512"></canvas> <br/>
+													<h2>Game speed</h2>
 													<button onclick="speed(60)" class="button">normal</button> 
 													<button onclick="speed(120)" class="button">x2</button> 
 													<button onclick="speed(300)" class="button">x5</button> 
@@ -52,7 +51,7 @@
 													
 
 													<script src = "Neuroevolution.js"></script>
-													<script src = "game.js"></script>
+													<script src = "normal.js"></script>
 												</center>
 
 
@@ -66,7 +65,7 @@
 										</section>
 									
 								</div>
-							</center>
+							</center>	
 						</div>
 					</div>
 				</div>
